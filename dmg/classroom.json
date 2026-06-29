@@ -1,0 +1,11 @@
+{
+  "schema": "classroom50/classroom/v1",
+  "name": "DMG",
+  "short_name": "dmg",
+  "term": "",
+  "org": "UM6P-CC",
+  "team": {
+    "id": 18245001,
+    "slug": "classroom50-dmg"
+  }
+}
