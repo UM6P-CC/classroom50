@@ -1,0 +1,25 @@
+{
+  "schema": "classroom50/classroom/v1",
+  "name": "DMG1",
+  "short_name": "dmg1",
+  "term": "FALL 2026-2027",
+  "org": "UM6P-CC",
+  "team": {
+    "id": 18707321,
+    "slug": "classroom50-dmg1"
+  },
+  "teams": {
+    "teacher": {
+      "id": 18707322,
+      "slug": "classroom50-dmg1-teacher"
+    },
+    "hta": {
+      "id": 18707323,
+      "slug": "classroom50-dmg1-hta"
+    },
+    "ta": {
+      "id": 18707324,
+      "slug": "classroom50-dmg1-ta"
+    }
+  }
+}
