@@ -1,4 +1,23 @@
 {
   "schema": "classroom50/assignments/v1",
-  "assignments": []
+  "assignments": [
+    {
+      "slug": "hello-world",
+      "name": "hello world",
+      "mode": "individual",
+      "autograder": "default",
+      "feedback_pr": true,
+      "tests": [
+        {
+          "name": "prints hello",
+          "type": "io",
+          "run": "./hello",
+          "points": 10,
+          "setup": "gcc -o hello hello.c",
+          "comparison": "included",
+          "expected": "hello world!"
+        }
+      ]
+    }
+  ]
 }
