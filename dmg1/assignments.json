@@ -1,4 +1,25 @@
 {
   "schema": "classroom50/assignments/v1",
-  "assignments": []
+  "assignments": [
+    {
+      "slug": "test-lab0",
+      "name": "test_lab0",
+      "mode": "individual",
+      "autograder": "default",
+      "feedback_pr": true,
+      "template": {
+        "owner": "UM6P-CC",
+        "repo": "um6p-cc-databases-26-lab-0-DM1-1",
+        "branch": "main"
+      },
+      "tests": [
+        {
+          "name": "test_lab0",
+          "type": "python",
+          "run": "pytest tests/test_lab0.py",
+          "points": 10
+        }
+      ]
+    }
+  ]
 }
