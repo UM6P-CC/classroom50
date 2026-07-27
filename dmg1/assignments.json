@@ -38,7 +38,7 @@
           "type": "python",
           "run": "pytest tests/test_lab0.py",
           "points": 10,
-          "setup": "pip install -r tests/requirements.txt"
+          "setup": "apt-get update -qq && apt-get install -y -qq mysql-server > /dev/null 2>&1 service mysql start until mysqladmin ping -h127.0.0.1 -uroot --silent; do sleep 1; done mysql -u root -e \"ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root'; FLUSH PRIVILEGES;\" pip install -r tests/requirements.txt"
         }
       ]
     }
