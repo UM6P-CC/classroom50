@@ -2,30 +2,6 @@
   "schema": "classroom50/assignments/v1",
   "assignments": [
     {
-      "slug": "test-lab0",
-      "name": "test_lab0",
-      "mode": "individual",
-      "autograder": "default",
-      "feedback_pr": true,
-      "template": {
-        "owner": "UM6P-CC",
-        "repo": "um6p-cc-databases-26-lab-0-DM1-1",
-        "branch": "main"
-      },
-      "tests": [
-        {
-          "name": "test_lab0",
-          "type": "python",
-          "run": "pytest tests/test_lab0.py",
-          "points": 10
-        }
-      ],
-      "submission_mode": "tag",
-      "grading": {
-        "mode": "auto"
-      }
-    },
-    {
       "slug": "test",
       "name": "test",
       "mode": "individual",
@@ -76,6 +52,27 @@
       "grading": {
         "mode": "auto"
       }
+    },
+    {
+      "slug": "test-lab0",
+      "name": "lab0",
+      "mode": "individual",
+      "autograder": "default",
+      "feedback_pr": true,
+      "template": {
+        "owner": "UM6P-CC",
+        "repo": "um6p-cc-databases-26-lab-0-DM1-1",
+        "branch": "main"
+      },
+      "tests": [
+        {
+          "name": "test_lab0",
+          "type": "python",
+          "run": "pytest tests/test_lab0.py",
+          "points": 100
+        }
+      ],
+      "submission_mode": "tag"
     }
   ]
 }
