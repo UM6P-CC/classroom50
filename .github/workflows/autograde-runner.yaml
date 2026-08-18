@@ -911,6 +911,26 @@ jobs:
       # stages the exact regular files post-grading for the Release step below.
       # "[]" = none.
       RELEASE_ASSETS: ${{ needs.setup.outputs.release-assets }}
+      # === Instructor-private per-lab bundle secrets ===
+      # Requires `secrets: inherit` on the calling shim (autograde.yaml) --
+      # without it, these all resolve to empty strings, since GitHub does not
+      # pass secrets to reusable workflows by default. Each lab's `setup`
+      # command in assignments.json reads its own var directly (e.g.
+      # $LAB3_PRIVATE_BUNDLE_B64), base64-decodes it, and extracts the
+      # instructor-only answer key / shadow dataset into the checkout just
+      # before running that lab's tests. runner.py's _run_command() invokes
+      # `subprocess.run(..., shell=True)` without overriding `env=`, so these
+      # are automatically visible to every test's setup/run string as plain
+      # shell variables -- no further plumbing needed beyond this block.
+      #
+      # WARNING: this block is a LOCAL, HAND-ADDED customization, not part
+      # of the upstream foundation50/classroom50 file. An upstream sync
+      # ("refresh Classroom 50 skeleton") can silently overwrite this whole
+      # file and drop these three lines without warning -- re-check this
+      # block after any skeleton refresh.
+      LAB3_PRIVATE_BUNDLE_B64: ${{ secrets.LAB3_PRIVATE_BUNDLE_B64 }}
+      LAB4_PRIVATE_BUNDLE_B64: ${{ secrets.LAB4_PRIVATE_BUNDLE_B64 }}
+      LAB5_PRIVATE_BUNDLE_B64: ${{ secrets.LAB5_PRIVATE_BUNDLE_B64 }}
     steps:
       - name: Check out submission
         uses: actions/checkout@v7
