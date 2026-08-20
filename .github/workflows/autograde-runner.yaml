@@ -928,6 +928,7 @@ jobs:
       # ("refresh Classroom 50 skeleton") can silently overwrite this whole
       # file and drop these three lines without warning -- re-check this
       # block after any skeleton refresh.
+      LAB2_PRIVATE_BUNDLE_B64: ${{ secrets.LAB2_PRIVATE_BUNDLE_B64 }}
       LAB3_PRIVATE_BUNDLE_B64: ${{ secrets.LAB3_PRIVATE_BUNDLE_B64 }}
       LAB4_PRIVATE_BUNDLE_B64: ${{ secrets.LAB4_PRIVATE_BUNDLE_B64 }}
       LAB5_PRIVATE_BUNDLE_B64: ${{ secrets.LAB5_PRIVATE_BUNDLE_B64 }}
