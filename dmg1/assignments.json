@@ -174,6 +174,31 @@
         }
       ],
       "submission_mode": "every-push"
+    },
+    {
+      "slug": "lab2-test",
+      "name": "lab2_test",
+      "mode": "individual",
+      "autograder": "default",
+      "feedback_pr": true,
+      "copy_about": true,
+      "copy_topics": true,
+      "template": {
+        "owner": "UM6P-CC",
+        "repo": "um6p-cc-databases-26-lab-0-DM1-1",
+        "branch": "main"
+      },
+      "tests": [
+        {
+          "name": "lab2",
+          "type": "python",
+          "run": "pytest tests/test_lab2.py --tb=short",
+          "points": 100,
+          "setup": "sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends mysql-server > /dev/null 2>&1 && sudo service mysql start && until mysqladmin ping -h127.0.0.1 -uroot --silent; do sleep 1; done && sudo mysql --defaults-file=/etc/mysql/debian.cnf -e \"ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root'; FLUSH PRIVILEGES;\" && pip install -r tests/requirements.txt && echo \"$LAB2_PRIVATE_BUNDLE_B64\" | base64 -d > /tmp/lab2_private_bundle.tar.gz && tar xzf /tmp/lab2_private_bundle.tar.gz -C tests && rm -f /tmp/lab2_private_bundle.tar.gz",
+          "timeout": 180
+        }
+      ],
+      "submission_mode": "every-push"
     }
   ]
 }
