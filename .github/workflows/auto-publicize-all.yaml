@@ -1,0 +1,40 @@
+name: Auto-publicize eligible student repos
+
+# Runs on a schedule and flips newly-accepted student repos to public,
+# for every assignment listed in SAFE_PREFIXES below.
+#
+# NOTE: this now includes lab2/lab3/lab4/lab5, whose private grading
+# material (answer keys, shadow datasets) is decoded into the checkout
+# on every run. Once any single student's repo goes public and submits,
+# that shared material is exposed class-wide and cannot be un-exposed by
+# later flipping the repo back to private.
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # every 15 minutes
+  workflow_dispatch:          # manual trigger, e.g. right after a class deadline
+
+jobs:
+  make-public:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Flip eligible repos to public
+        env:
+          GH_TOKEN: ${{ secrets.CLASSROOM50_SERVICE_TOKEN }}
+          ORG: ${{ github.repository_owner }}
+        run: |
+          set -euo pipefail
+
+          SAFE_PREFIXES=("dmg1-lab2-" "dmg1-lab3-" "dmg1-lab4-" "dmg1-lab5-")
+
+          for PREFIX in "${SAFE_PREFIXES[@]}"; do
+            echo "::group::Checking repos matching ${PREFIX}*"
+            gh repo list "$ORG" --limit 1000 --json name,visibility \
+              | jq -r --arg pat "$PREFIX" \
+                  '.[] | select(.name | startswith($pat)) | select(.visibility=="PRIVATE") | .name' \
+              | while read -r REPO; do
+                  echo "Making $ORG/$REPO public"
+                  gh api -X PATCH "repos/$ORG/$REPO" -f private=false
+                done
+            echo "::endgroup::"
+          done
